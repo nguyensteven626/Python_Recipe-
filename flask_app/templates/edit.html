@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <h1>Edit Recipe</h1>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </nav>
+    <div>
+        <form action="/recipe/{{recipe.id}}/update" method = "post">
+            <label for="name">Name:</label>
+            <input type="text" name ="name" value = "{{recipe.name}}">
+            <label for="description">Description:</label>
+            <input type="text" name ="description" value = "{{recipe.description}}">
+            <label for="instructions">Instructions:</label>
+            <input type="text" name ="instructions" value = "{{recipe.instructions}}">
+            <label for="date_made">Date Made On:</label>
+            <input type="date" name ="date_made" value = "{{recipe.date_made}}">
+            <label for="under30">Under 30 Minutes?</label>
+            <input type="radio" name ="under30">
+            <br>
+            <input type="submit" value = "Update">
+        </form>
+    </div>
+
+    {% with messages = get_flashed_messages(category_filter=['create_recipe']) %}
+                {% if messages %}
+                <div>
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            {% endwith %}
+</body>
+</html>
